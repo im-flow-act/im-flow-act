@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Flow as the Cross-domain Manipulation Interface">
+  <!-- <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flow as the Cross-domain Manipulation Interface</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Flow as the Cross-domain Manipulation Interface</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Washington,</span>
+              <span class="author-block"><sup>2</sup>Google Research</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/google/nerfies" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" controls autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/im2flow2act.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">Im2Flow2Act</span> : We present Im2Flow2Act, a scalable learning framework that enables
+          robots to acquire manipulation skills from diverse data sources.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present Im2Flow2Act, a scalable learning framework that enables robots to acquire manipulation skills
+              from diverse data sources.
+              The key idea behind Im2Flow2Act is to use object flow as the manipulation interface, bridging domain gaps
+              between different embodiments (i.e., human and robot) and training environments (i.e., real-world and
+              simulated).
+              Im2Flow2Act comprises two components: a flow generation network and a flow-conditioned policy.
+              The flow generation network, trained on human demonstration videos, generates object flow from the initial
+              scene image, conditioned on the task description.
+              The flow-conditioned policy, trained on simulated robot play data, maps the generated object flow to robot
+              actions to realize the desired object movements.
+              By using flow as input, this policy can be directly deployed in the real world with a minimal sim-to-real
+              gap.
+              By leveraging real-world human videos and simulated robot play data, we bypass the challenges of
+              teleoperating physical robots in the real world, resulting in a scalable system for diverse tasks.
+              We demonstrate Im2Flow2Act's capabilities in a variety of real-world tasks, including the manipulation of
+              rigid, articulated, and deformable objects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Im2Flow2Act Overview</h2>
+          <div class="content has-text-justified">
+            <img src="./static/images/teaser.jpg">
+            <p>
+              In Im2Flow2Act, we utilize object flow to bridge the domain gap between both embodiments (human v.s.
+              robot)
+              and training environments (real v.s. simulation).
+              Our final system is able to leverage both <strong>a)</strong>
+              action-less human video for task-conditioned flow generation and <strong>b)</strong>
+              task-less simulated robot data for flow conditioned action generation, resulting in <strong>c)</strong> a
+              language-conditioned multi-task system for a wide variety of real-world manipulation tasks.
+            </p>
+            <p>
+              Our key idea is to use <strong>object flow</strong>—the exclusive motion of the manipulated object,
+              excluding any background or embodiment movement—as <strong> a unifying interface to connect
+                cross-embodiments (i.e., human and robot) and cross-environments (i.e., real-world and
+                simulated)</strong>,
+              achieving one-shot generalization for new skills in the real world.
+            </p>
+            <img src="./static/images/method.jpg">
+            <p>To utilize object flow as a unifying interface for learning from diverse data sources, we design our
+              system into two components:</p>
+
+            <ul style="margin-left: 5mm;">
+              <li><strong>Flow generation network:</strong> The goal of the flow generation network is to learn
+                high-level task planning through cross-embodiment videos, including those of different types of robots
+                and human demonstrations.
+                We develop a language-conditioned flow generation network built on top of the video generation model
+                Animatediff.
+                This high-level planning component generates the task flow based on initial visual observation and task
+                description.</li>
+
+              <li><strong>Flow-conditioned policy:</strong> The goal of the flow-conditioned imitation learning policy
+                is to achieve the flows generated by the flow generation network, focusing on low-level execution.
+                The policy learns entirely from simulated data to build the mapping between actions and flows.
+                Unlike most sim-to-real work that requires building task-specific simulation, our policy learns entirely
+                from play data, which is easier to collect.
+                Since flow represents motion, a common concept across both real-world and simulated environments, our
+                policy can be seamlessly deployed in real-world settings.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+
+        <!-- Visual Effects. -->
+        <!--/ Visual Effects. -->
+
+        <!-- Matting. -->
+        <div class="column">
+          <h2 class="title is-3">Flow Generation From Human demonstration Video</h2>
+          <div class="columns is-centered">
+            <div class="column content">
+              <p>
+
+                Object flow encapsulates transferable task knowledge independent of
+                embodiment-specific actions. To exploit this, our language-conditioned flow generation network focused
+                solely
+                on extracting object flows <strong> from human demonstration videos</strong>.
+              </p>
+              <figure>
+                <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/human_task.mp4" type="video/mp4">
+                </video>
+                <figcaption>Flow-Generation Network learn from action-less human video.</figcaption>
+              </figure>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--/ Matting. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Flow-Conditioned Policy From Simulated Play Data </h2>
+          <p>
+            Our flow-conditioned imitation learning policy is learned <strong> entirely from simulated play
+              data.</strong>. We collected 4800 play data ranging from rigid, articluted and deformable obejcts and
+            train <strong> one single policy</strong>.
+          </p>
+          <figure>
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/sim_play.mp4" type="video/mp4">
+            </video>
+            <figcaption>Flow-Conditioned Policy entirely learn from simulated play data.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- Animation. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3" style="text-align: center;">Combing them together: Im2Flow2Act</h2>
+
+          <!-- Interpolating. -->
+          <h3 class="title is-4">Inference Pipeline</h3>
+          <div class="content has-text-justified">
+            <p>
+              During inference, the flow generation network generates a task flow conditioned on an initial RGB image, a
+              task description, and a set of initial keypoints obtained through Grounding DINO. The generated flow is
+              post-processed by a motion filter to remove keypoints on the background.
+
+              Our flow-conditioned imitation learning policy then completes tasks based on the generated flows.
+            </p>
+          </div>
+          <div class="columns is-vcentered interpolation-panel">
+            <video id="replay-video" controls muted preload playsinline width="100%">
+              <source src="./static/videos/overall_pipeline.mp4" type="video/mp4">
+            </video>
+          </div>
+          <br />
+          <!--/ Interpolating. -->
+          <p>
+            Our final system provides a scalable framework for acquiring robot manipulation skills by bridging
+            cross-embodiment demonstration video and cost-effective simulated robot play data via object flows as an
+            interface. We achieve an average success rate of 81% across four tasks, including those involving rigid,
+            articulated, and deformable objects.
+          </p>
+          <br />
+          <br />
+          <!-- Re-rendering. -->
+          <h3 class="title is-4">Rigid</h3>
+          <div class="content has-text-justified">
+            <!-- <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p> -->
+          </div>
+          <div class="content has-text-centered">
+            <video id="replay-video" controls muted preload playsinline width="75%">
+              <source src="./static/videos/pouring.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!--/ Re-rendering. -->
+
+          <!-- Re-rendering. -->
+          <h3 class="title is-4">Articluated</h3>
+          <div class="content has-text-justified">
+            <!-- <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p> -->
+          </div>
+          <div class="content has-text-centered">
+            <video id="replay-video" controls muted preload playsinline width="75%">
+              <source src="./static/videos/drawer.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!--/ Re-rendering. -->
+          <!-- Re-rendering. -->
+          <h3 class="title is-4">Deformable</h3>
+          <div class="content has-text-justified">
+            <!-- <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p> -->
+          </div>
+          <div class="content has-text-centered">
+            <video id="replay-video" controls muted preload playsinline width="75%">
+              <source src="./static/videos/cloth.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!--/ Re-rendering. -->
+
+        </div>
+      </div>
+      <!--/ Animation. -->
+
+
+    </div>
+  </section>
+
+
+  <!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
